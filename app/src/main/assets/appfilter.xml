@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Fallback styling for every unmapped app: soft 3D matte rounded-square -->
+    <iconback img1="iconback_1" img2="iconback_2" img3="iconback_3" img4="iconback_4" />
+    <iconmask img="iconmask" />
+    <scale factor="0.70" />
+
     <item component="ComponentInfo{com.google.android.dialer/com.google.android.dialer.extensions.GoogleDialtactsActivity}" drawable="phone" />
     <item component="ComponentInfo{com.android.dialer/com.android.dialer.main.impl.MainActivity}" drawable="phone" />
     <item component="ComponentInfo{com.google.android.contacts/com.android.contacts.activities.PeopleActivity}" drawable="contacts" />
