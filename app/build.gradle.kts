@@ -10,8 +10,8 @@ android {
         applicationId = "com.newalitraders.oos16theme"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.0.2-github"
+        versionCode = 4
+        versionName = "1.1.0-launcher"
     }
 
     buildTypes {
