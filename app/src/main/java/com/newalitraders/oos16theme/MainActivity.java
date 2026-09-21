@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
 
         root.addView(button("Open Wallpaper / Style Settings", v -> {
             try {
-                startActivity(new Intent(Settings.ACTION_WALLPAPER_SETTINGS));
+                startActivity(new Intent(Intent.ACTION_SET_WALLPAPER));
             } catch (Exception e) {
                 startActivity(new Intent(Settings.ACTION_SETTINGS));
             }
