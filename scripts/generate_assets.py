@@ -63,14 +63,14 @@ def center_text(im, txt, fnt, color=(248,247,242,255), dy=0, shadow=True):
 def icon_font(name, code, bg1, bg2, brand=False, fg=(248,247,242,255)):
     im=rounded_gradient(bg1,bg2)
     center_text(im, chr(int(code,16)), F_BRAND if brand else F_SOLID, fg, dy=-8)
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def chrome(name):
     im=rounded_gradient("#F6F1F1","#E9E4E4"); d=ImageDraw.Draw(im)
     box=(135,135,377,377)
     d.pieslice(box,210,330,fill="#34A853"); d.pieslice(box,330,90,fill="#EA4335"); d.pieslice(box,90,210,fill="#FBBC05")
     d.ellipse((195,195,317,317),fill="#4285F4"); d.ellipse((220,220,292,292),fill="#F8F7F3")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def flower(name):
     im=rounded_gradient("#FAF7F5","#E7E4E5"); d=ImageDraw.Draw(im)
@@ -80,7 +80,7 @@ def flower(name):
         a=math.radians(i*45-90); x=cx+72*math.cos(a); y=cy+72*math.sin(a)
         d.ellipse((x-52,y-70,x+52,y+70),fill=c)
     d.ellipse((236,236,276,276),fill="#F7F3EF")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def playstore(name):
     im=rounded_gradient("#F8F5F2","#ECE8E7"); d=ImageDraw.Draw(im)
@@ -89,7 +89,7 @@ def playstore(name):
     d.polygon([(176,145),(273,229),(230,256),(176,205)],fill="#3F8CF4")
     d.polygon([(176,307),(230,256),(273,283),(176,367)],fill="#F9C13D")
     d.polygon([(230,256),(273,229),(372,256),(273,283)],fill="#EF4A49")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def gmail(name):
     im=rounded_gradient("#F8F5F3","#EAE7E6"); d=ImageDraw.Draw(im)
@@ -97,7 +97,7 @@ def gmail(name):
     d.line((145,180,256,270,367,180),fill="#EA4335",width=35,joint="curve")
     d.line((145,180,145,340),fill="#C5221F",width=28)
     d.line((367,180,367,340),fill="#C5221F",width=28)
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def calendar(name):
     im=rounded_gradient("#F7F4F5","#E8E4E8"); d=ImageDraw.Draw(im)
@@ -105,7 +105,7 @@ def calendar(name):
     d.rounded_rectangle((132,120,380,198),42,fill="#3498F5")
     f=font("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",115)
     txt="31"; bb=d.textbbox((0,0),txt,font=f); d.text(((512-(bb[2]-bb[0]))/2,218),txt,font=f,fill="#20385A")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def clock(name):
     im=rounded_gradient("#F7F2EF","#E6E1DE"); d=ImageDraw.Draw(im)
@@ -113,7 +113,7 @@ def clock(name):
     d.line((256,256,256,183),fill="#202B3A",width=12)
     d.line((256,256,318,294),fill="#202B3A",width=12)
     d.ellipse((244,244,268,268),fill="#E74B4B")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def calculator(name):
     im=rounded_gradient("#7D8897","#4D5868"); d=ImageDraw.Draw(im)
@@ -124,14 +124,14 @@ def calculator(name):
     f=font("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",58)
     syms=[("+",158,150),("−",277,150),("×",158,268),("=",285,268)]
     for s,x,y in syms:d.text((x+20,y+10),s,font=f,fill="#F8F6F2" if s!="=" else "#37404A")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def weather(name):
     im=rounded_gradient("#46C6F5","#168DE8"); d=ImageDraw.Draw(im)
     d.ellipse((245,150,345,250),fill="#FFD34D")
     d.rounded_rectangle((145,245,360,330),42,fill="#F6F7F4")
     d.ellipse((160,210,275,315),fill="#F6F7F4"); d.ellipse((235,190,345,315),fill="#F6F7F4")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def lens(name):
     im=rounded_gradient("#F8F5F2","#E9E6E4"); d=ImageDraw.Draw(im)
@@ -141,20 +141,20 @@ def lens(name):
     d.line((165,307,165,352,225,352),fill=cols[2],width=28)
     d.line((347,307,347,352,287,352),fill=cols[3],width=28)
     d.ellipse((218,218,294,294),fill="#4285F4")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def assistant(name):
     im=rounded_gradient("#FAF6F5","#EEE9E7"); d=ImageDraw.Draw(im)
     for x,y,r,c in [(218,218,55,"#4285F4"),(303,231,35,"#EA4335"),(288,303,24,"#FBBC05"),(214,312,18,"#34A853")]:
         d.ellipse((x-r,y-r,x+r,y+r),fill=c)
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 def meet(name):
     im=rounded_gradient("#F8F5F2","#E9E6E4"); d=ImageDraw.Draw(im)
     d.rounded_rectangle((155,180,305,330),28,fill="#34A853")
     d.polygon([(305,218),(380,175),(380,335),(305,292)],fill="#4285F4")
     d.rectangle((155,180,230,255),fill="#FBBC05"); d.rectangle((230,255,305,330),fill="#EA4335")
-    im.convert("RGB").save(os.path.join(OUT,name+".webp"),"WEBP",quality=92,method=6)
+    im.save(os.path.join(OUT,name+".webp"),"WEBP",lossless=True,method=6)
 
 # Base icon definitions: name, hex codepoint, bg top, bg bottom, brand?
 defs = [
@@ -183,13 +183,29 @@ weather("weather"); weather("weather_alt"); lens("lens"); assistant("voice_assis
 # Drive: stylized brand glyph
 icon_font("drive","f3aa","#FAF6F3","#E7E2E0",True,(58,161,109,255))
 
+# Fallback masking resources for unmapped apps.
+# These keep every stock app visually consistent without black square corners.
+for idx,(c1,c2) in enumerate([
+    ("#69D8A1","#24B76D"),
+    ("#65C9F6","#258BE1"),
+    ("#FFD77C","#F4AD2E"),
+    ("#F5ECE8","#DCD6D3")
+], start=1):
+    bg = rounded_gradient(c1,c2)
+    bg.save(os.path.join(OUT,f"iconback_{idx}.webp"),"WEBP",lossless=True,method=6)
+
+mask = Image.new("RGBA",(512,512),(0,0,0,0))
+md = ImageDraw.Draw(mask)
+md.rounded_rectangle((30,26,482,478),118,fill=(255,255,255,255))
+mask.save(os.path.join(OUT,"iconmask.webp"),"WEBP",lossless=True,method=6)
+
 # 192px copies for launchers that prefer smaller resources
 SMALL=os.path.join(os.path.dirname(OUT),"drawable")
 os.makedirs(SMALL,exist_ok=True)
 for fn in os.listdir(OUT):
     if fn.endswith(".webp") and not fn.startswith("wallpaper_"):
         im=Image.open(os.path.join(OUT,fn)).resize((192,192),Image.Resampling.LANCZOS)
-        im.save(os.path.join(SMALL,fn),"WEBP",quality=90,method=6)
+        im.save(os.path.join(SMALL,fn),"WEBP",lossless=True,method=6)
 
 def hexmix(a,b,t):
     aa=tuple(int(a[i:i+2],16) for i in (1,3,5)); bb=tuple(int(b[i:i+2],16) for i in (1,3,5))
