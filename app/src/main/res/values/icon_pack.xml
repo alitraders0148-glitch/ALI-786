@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="icon_pack">
+        <item>calculator</item>
+        <item>calendar</item>
+        <item>camera</item>
+        <item>chrome</item>
+        <item>clock</item>
+        <item>compass</item>
+        <item>contacts</item>
+        <item>contacts_alt</item>
+        <item>docs</item>
+        <item>drive</item>
+        <item>files</item>
+        <item>find_device</item>
+        <item>fm_radio</item>
+        <item>gallery</item>
+        <item>game_center</item>
+        <item>gmail</item>
+        <item>internet</item>
+        <item>keep_notes</item>
+        <item>lens</item>
+        <item>maps</item>
+        <item>meet</item>
+        <item>messages</item>
+        <item>music</item>
+        <item>my_files</item>
+        <item>news</item>
+        <item>notes</item>
+        <item>phone</item>
+        <item>photos</item>
+        <item>photos_alt</item>
+        <item>play_store</item>
+        <item>podcasts</item>
+        <item>recorder</item>
+        <item>security</item>
+        <item>settings</item>
+        <item>sheets</item>
+        <item>slides</item>
+        <item>tasks</item>
+        <item>theme_store</item>
+        <item>tips</item>
+        <item>translate</item>
+        <item>videos</item>
+        <item>voice_assistant</item>
+        <item>wallet</item>
+        <item>weather</item>
+        <item>weather_alt</item>
+        <item>whatsapp</item>
+        <item>youtube</item>
+        <item>youtube_music</item>
+    </string-array>
+</resources>
