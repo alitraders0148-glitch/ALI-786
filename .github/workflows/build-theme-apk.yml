@@ -1,0 +1,94 @@
+name: Build NEW ALI TRADERS OxygenOS 16 Theme APK
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android 16 SDK
+        run: |
+          yes | sdkmanager --licenses >/dev/null 2>&1 || true
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;35.0.0"
+
+      - name: Set up Gradle 8.11.1
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.11.1"
+
+      - name: Install asset generator dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-core
+          curl -L --fail --retry 3 -o /tmp/fa-solid-900.ttf "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-solid-900.ttf"
+          curl -L --fail --retry 3 -o /tmp/fa-brands-400.ttf "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-brands-400.ttf"
+
+      - name: Generate approved soft 3D matte theme assets
+        env:
+          FA_SOLID: /tmp/fa-solid-900.ttf
+          FA_BRANDS: /tmp/fa-brands-400.ttf
+          ASSET_OUT: app/src/main/res/drawable-nodpi
+        run: |
+          python3 scripts/generate_assets.py
+          test -f app/src/main/res/drawable-nodpi/wallpaper_home.webp
+          test -f app/src/main/res/drawable-nodpi/wallpaper_lock.webp
+          test -f app/src/main/res/drawable-nodpi/wallpaper_aod.webp
+          test -f app/src/main/res/drawable-nodpi/phone.webp
+          test -f app/src/main/res/drawable-nodpi/settings.webp
+
+      - name: Build debug APK
+        run: gradle --no-daemon :app:assembleDebug
+
+      - name: Verify APK
+        run: |
+          test -f app/build/outputs/apk/debug/app-debug.apk
+          ls -lh app/build/outputs/apk/debug/app-debug.apk
+          sha256sum app/build/outputs/apk/debug/app-debug.apk | tee app/build/outputs/apk/debug/SHA256.txt
+
+      - name: Package theme source assets
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/debug/app-debug.apk dist/NEW_ALI_TRADERS_OOS16_THEME_DEBUG.apk
+          cp app/build/outputs/apk/debug/SHA256.txt dist/SHA256.txt
+          cp -r app/src/main/res/drawable-nodpi dist/generated-theme-assets
+          cp app/src/main/assets/appfilter.xml dist/appfilter.xml
+          cp app/src/main/assets/drawable.xml dist/drawable.xml
+          (cd dist && zip -qr NEW_ALI_TRADERS_OOS16_THEME_PACK_BUILT.zip generated-theme-assets appfilter.xml drawable.xml SHA256.txt)
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEW-ALI-TRADERS-OOS16-THEME-APK
+          path: |
+            dist/NEW_ALI_TRADERS_OOS16_THEME_DEBUG.apk
+            dist/SHA256.txt
+          if-no-files-found: error
+
+      - name: Upload complete theme pack artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEW-ALI-TRADERS-OOS16-THEME-PACK
+          path: dist/NEW_ALI_TRADERS_OOS16_THEME_PACK_BUILT.zip
+          if-no-files-found: error
